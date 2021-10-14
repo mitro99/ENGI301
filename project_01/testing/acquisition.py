@@ -47,7 +47,9 @@ import pandas as pd
 i2c = busio.I2C(board.SCL_2, board.SDA_2)
 print(board.SCL_2, board.SDA_2)
 mpu = adafruit_mpu6050.MPU6050(i2c)
-mpu.accelerometer_range = adafruit_mpu6050.Range.RANGE_2_G
+mpu.accelerometer_range = adafruit_mpu6050.Range.RANGE_4_G
+mpu.gyro_range = adafruit_mpu6050.GyroRange.RANGE_500_DPS
+
 num = 0
 while True:
     if abs(sum(mpu.acceleration)) > 20:

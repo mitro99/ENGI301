@@ -47,25 +47,20 @@ import pandas as pd
 i2c = busio.I2C(board.SCL_2, board.SDA_2)
 print(board.SCL_2, board.SDA_2)
 mpu = adafruit_mpu6050.MPU6050(i2c)
-mpu.accelerometer_range = adafruit_mpu6050.Range.RANGE_4_G
-gesture = []
-
-
-i = 0    
-starttime = time.perf_counter()
-print(starttime)
-
-print(mpu.acceleration[0])
-while(time.perf_counter() <= starttime + 1.5):
-    i += 1
-    gesture.append(list(
-        mpu.acceleration + mpu.gyro
-        ))
-
-endtime = time.perf_counter()
-print(endtime)
-
-data = pd.DataFrame(gesture, columns = ['aX','aY','aZ','gX','gY','gZ'])
-print(data)
-data.to_csv('test1.csv', index=False)
-print(i)
+mpu.accelerometer_range = adafruit_mpu6050.Range.RANGE_2_G
+num = 0
+while True:
+    if abs(sum(mpu.acceleration)) > 15:
+        num += 1
+        i = 0    
+        gesture = []
+        while(i < 250):
+            i += 1
+            gesture.append(list(mpu.acceleration + mpu.gyro))
+        
+    
+        data = pd.DataFrame(gesture, columns = ['aX','aY','aZ','gX','gY','gZ'])
+        print(data)
+        filepath = 'test' + str(num) + '.csv'
+        data.to_csv(filepath, index=False)
+        print(i)

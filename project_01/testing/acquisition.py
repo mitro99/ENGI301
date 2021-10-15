@@ -37,6 +37,7 @@ Simple program that will blink the USR3 LED on the PocketBeagle at 5 Hz
 
 """
 
+
 import adafruit_mpu6050
 import time
 import board
@@ -46,13 +47,14 @@ import pandas as pd
 
 i2c = busio.I2C(board.SCL_2, board.SDA_2)
 print(board.SCL_2, board.SDA_2)
+
 mpu = adafruit_mpu6050.MPU6050(i2c)
 mpu.accelerometer_range = adafruit_mpu6050.Range.RANGE_4_G
 mpu.gyro_range = adafruit_mpu6050.GyroRange.RANGE_500_DPS
 
 num = 0
 while True:
-    if abs(sum(mpu.acceleration)) > 20:
+    if abs(sum(mpu.acceleration)) > 15:
         num += 1
         i = 0    
         gesture = []
@@ -63,6 +65,6 @@ while True:
     
         data = pd.DataFrame(gesture, columns = ['aX','aY','aZ','gX','gY','gZ'])
         print(data)
-        filepath = 'test_4_' + str(num) + '.csv'
+        filepath = 'test_3_{0}.csv'.format(num)
         data.to_csv(filepath, index=False)
         print(i)

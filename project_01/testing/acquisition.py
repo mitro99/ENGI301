@@ -54,7 +54,7 @@ mpu.gyro_range = adafruit_mpu6050.GyroRange.RANGE_500_DPS
 
 num = 0
 while True:
-    if abs(sum(mpu.acceleration)) > 15:
+    if abs(sum(mpu.acceleration)) > 20:
         num += 1
         i = 0    
         gesture = []
@@ -65,6 +65,6 @@ while True:
     
         data = pd.DataFrame(gesture, columns = ['aX','aY','aZ','gX','gY','gZ'])
         print(data)
-        filepath = 'test_3_{0}.csv'.format(num)
+        filepath = 'test_3_{0}.csv'.format(num+10)
         data.to_csv(filepath, index=False)
         print(i)

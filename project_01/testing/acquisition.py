@@ -65,6 +65,6 @@ while True:
     
         data = pd.DataFrame(gesture, columns = ['aX','aY','aZ','gX','gY','gZ'])
         #print(data)
-        filepath = 'test_9_{0}.csv'.format(num)
+        filepath = 'test_9_{0}.csv'.format(num+51)
         data.to_csv(filepath, index=False)
-        print(num)
+        print(num+51)

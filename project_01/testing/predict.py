@@ -58,10 +58,12 @@ def wavelet(data, level, wavelet):
 
 interpreter = tflite.Interpreter(model_path='test_model.tflite')
 
-signatures = interpreter.get_signature_list()
-print(signatures)
-predictor = interpreter.get_signature_runner()
-print(predictor)
+interpreter.allocate_tensors()
+
+input_details = interpreter.get_input_details()
+output_details = interpreter.get_output_details()
+
+print(input_details)
 
 
 mpu = adafruit_mpu6050.MPU6050(i2c)
@@ -108,7 +110,16 @@ while True:
         
         endtime = time.perf_counter()
         gesturewave = np.transpose(gesturewave).flatten()
-        print(gesturewave.size)
-        output = predictor(data_input=np.float32(gesturewave))
-        print(output)
+        print(gesturewave)
+        
+        
+        input_data = np.float32(np.resize(gesturewave, (1, 1584)))
+        interpreter.set_tensor(input_details[0]['index'], input_data)
+        
+        interpreter.invoke()
+        
+        output_data = interpreter.get_tensor(output_details[0]['index'])
+        output_data
+        #output = predictor(data_input=np.float32(gesturewave))
+        #print(output)
         print(endtime-starttime)

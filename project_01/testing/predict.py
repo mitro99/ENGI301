@@ -46,15 +46,55 @@ import numpy as np
 import pandas as pd
 import tflite_runtime.interpreter as tflite
 import pywt
-
-i2c = busio.I2C(board.SCL_2, board.SDA_2)
-print(board.SCL_2, board.SDA_2)
+import adafruit_ssd1306
 
 def wavelet(data, level, wavelet):
     (cA, cD) = pywt.dwt(data, wavelet=wavelet)
     for i in range(1, level):
         (cA, cD) = pywt.dwt(cA, wavelet=wavelet)
     return cA, cD
+
+def predict(gesture):
+    gesture = np.array(gesture, dtype='float32')
+    starttime=time.perf_counter()
+
+    gesturewave = np.empty((24,66))
+    for i in range(0,11,2):
+        gesturewavef = wavelet(gesture[0:,int(i/2)], level1, wavetype1)
+        gesturewave[i, 0:] = gesturewavef[0]
+        gesturewave[i+1, 0:] = gesturewavef[1]
+        del gesturewavef
+    
+    
+    for i in range(12,23):
+        gesturewavef = wavelet(gesture[0:,int(i/2)-6], level1, wavetype1)
+        gesturewave[i, 0:] = gesturewavef[0]
+        gesturewave[i+1, 0:] = gesturewavef[1]
+        del gesturewavef
+    
+    endtime = time.perf_counter()
+    gesturewave = np.transpose(gesturewave).flatten()
+    print(gesturewave)
+    
+    
+    input_data = np.float32(np.resize(gesturewave, (1, 1584)))
+    interpreter.set_tensor(input_details[0]['index'], input_data)
+    
+    interpreter.invoke()
+    
+    output_data = interpreter.get_tensor(output_details[0]['index'])
+    output_data
+    #output = predictor(data_input=np.float32(gesturewave))
+    print(output_data)
+    print(endtime-starttime)
+
+    return output_data
+
+
+
+# setup
+i2c = busio.I2C(board.SCL_2, board.SDA_2)
+print(board.SCL_2, board.SDA_2)
 
 interpreter = tflite.Interpreter(model_path='test_model.tflite')
 
@@ -65,6 +105,10 @@ output_details = interpreter.get_output_details()
 
 print(input_details)
 
+display = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c)
+display.fill(0)
+display_width = display.width
+display_height = display.height
 
 mpu = adafruit_mpu6050.MPU6050(i2c)
 mpu.accelerometer_range = adafruit_mpu6050.Range.RANGE_4_G
@@ -81,45 +125,14 @@ wavetype1 = 'dmey'
 level2 = 2
 wavetype2 = 'rbio2.2'
 
-num = 0
+n = 0
 while True:
-    if sum(np.absolute(mpu.acceleration)) > 20:
-        num += 1
-        n = 0    
+    if sum(np.absolute(mpu.acceleration)) > 20 or n != 0:
         gesture = []
-        while(n < 250):
+        if n < 250:
             n += 1
             gesture.append(list(mpu.acceleration + mpu.gyro))
-            
-        gesture = np.array(gesture, dtype='float32')
-        starttime=time.perf_counter()
-
-        gesturewave = np.empty((24,66))
-        for i in range(0,11,2):
-            gesturewavef = wavelet(gesture[0:,int(i/2)], level1, wavetype1)
-            gesturewave[i, 0:] = gesturewavef[0]
-            gesturewave[i+1, 0:] = gesturewavef[1]
-            del gesturewavef
+        
+        prediction = predict(gesture)
         
         
-        for i in range(12,23):
-            gesturewavef = wavelet(gesture[0:,int(i/2)-6], level1, wavetype1)
-            gesturewave[i, 0:] = gesturewavef[0]
-            gesturewave[i+1, 0:] = gesturewavef[1]
-            del gesturewavef
-        
-        endtime = time.perf_counter()
-        gesturewave = np.transpose(gesturewave).flatten()
-        print(gesturewave)
-        
-        
-        input_data = np.float32(np.resize(gesturewave, (1, 1584)))
-        interpreter.set_tensor(input_details[0]['index'], input_data)
-        
-        interpreter.invoke()
-        
-        output_data = interpreter.get_tensor(output_details[0]['index'])
-        output_data
-        #output = predictor(data_input=np.float32(gesturewave))
-        print(output_data)
-        print(endtime-starttime)

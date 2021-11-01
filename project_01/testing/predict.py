@@ -39,6 +39,8 @@ Simple program that will blink the USR3 LED on the PocketBeagle at 5 Hz
 
 #time.perfcounter()
 import adafruit_mpu6050
+import operator as op
+import re
 import time
 import board
 import busio
@@ -47,6 +49,8 @@ import pandas as pd
 import tflite_runtime.interpreter as tflite
 import pywt
 import adafruit_ssd1306
+import Adafruit_BBIO.PWM as PWM
+from PIL import Image, ImageDraw, ImageFont
 
 def wavelet(data, level, wavelet):
     (cA, cD) = pywt.dwt(data, wavelet=wavelet)
@@ -58,7 +62,7 @@ def predict(gesture):
     gesture = np.array(gesture, dtype='float32')
     starttime=time.perf_counter()
 
-    gesturewave = np.empty((24,66))
+    gesturewave = np.empty((24,48))
     for i in range(0,11,2):
         gesturewavef = wavelet(gesture[0:,int(i/2)], level1, wavetype1)
         gesturewave[i, 0:] = gesturewavef[0]
@@ -66,50 +70,71 @@ def predict(gesture):
         del gesturewavef
     
     
-    for i in range(12,23):
-        gesturewavef = wavelet(gesture[0:,int(i/2)-6], level1, wavetype1)
+    for i in range(12,23,2):
+        gesturewavef = wavelet(gesture[0:,int(i/2)-6], level2, wavetype2)
         gesturewave[i, 0:] = gesturewavef[0]
         gesturewave[i+1, 0:] = gesturewavef[1]
         del gesturewavef
     
-    endtime = time.perf_counter()
+    for i in range(0,23):
+        gesturewave[i] = (gesturewave[i] - minvals[i]) / (maxvals[i] - minvals[i])
+    
     gesturewave = np.transpose(gesturewave).flatten()
-    print(gesturewave)
-    
-    
-    input_data = np.float32(np.resize(gesturewave, (1, 1584)))
+
+    input_data = np.float32(np.resize(gesturewave, (1, 1152)))
     interpreter.set_tensor(input_details[0]['index'], input_data)
     
     interpreter.invoke()
     
     output_data = interpreter.get_tensor(output_details[0]['index'])
     output_data
-    #output = predictor(data_input=np.float32(gesturewave))
-    print(output_data)
+    endtime = time.perf_counter()
+
+    #print(output_data)
     print(endtime-starttime)
 
     return output_data
 
+operators = {
+    "+" : op.add,
+    "-" : op.sub,
+    "*" : op.mul,
+    "/" : op.truediv,
+    "^" : op.pow 
+}
 
 
 # setup
 i2c = busio.I2C(board.SCL_2, board.SDA_2)
 print(board.SCL_2, board.SDA_2)
 
-interpreter = tflite.Interpreter(model_path='test_model.tflite')
+interpreter = tflite.Interpreter(model_path='number_model.tflite')
 
 interpreter.allocate_tensors()
 
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 
-print(input_details)
+#Set up display
+disp = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c)
 
-display = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c)
-display.fill(0)
-display_width = display.width
-display_height = display.height
+disp.fill(0)
+disp.show()
 
+width = disp.width
+height = disp.height
+image = Image.new("1", (width, height))
+
+draw = ImageDraw.Draw(image)
+
+padding = -2
+top = padding
+bottom = height - padding
+x = 0
+
+font = ImageFont.truetype('Oswald-Regular.ttf', 30)
+
+#Set up accelerometer
 mpu = adafruit_mpu6050.MPU6050(i2c)
 mpu.accelerometer_range = adafruit_mpu6050.Range.RANGE_4_G
 mpu.gyro_range = adafruit_mpu6050.GyroRange.RANGE_500_DPS
@@ -117,22 +142,124 @@ mpu.gyro_range = adafruit_mpu6050.GyroRange.RANGE_500_DPS
 parameters = pd.read_csv('dataparameters.csv', index_col=0)
 
 minvals = np.array(parameters.loc['min'], dtype='float32')
+
 maxvals = np.array(parameters.loc['max'], dtype='float32')
 
 level1 = 5
-wavetype1 = 'dmey'
+wavetype1 = 'db20'
 
-level2 = 2
+level2 = 3
 wavetype2 = 'rbio2.2'
 
 n = 0
+gesture = []
+
+gesture_dict = {0:'0', 1:'1', 2:'2', 3:'3', 4:'4', 5:'5', 6:'6', 7:'7', 8:'8', 9:'9', 10:'cont'}
+op_dict = {1:'+', 2:'-', 3:'*', 4:'/', 5:'^'}
+cont = False;
+complete = False;
+eqn = str()
+digit = str()
+
+
+disp.fill(0)
+disp.show()
+
+width = disp.width
+height = disp.height
+image = Image.new("1", (width, height))
+
+draw = ImageDraw.Draw(image)
+
+padding = -2
+top = padding
+bottom = height - padding
+draw.rectangle((0, 0, width, height), outline=0, fill=0)
+draw.text((0, top), 'Test', font=font, fill = 255)
+disp.image(image)
+disp.show()
+time.sleep(1)
+disp.fill(0)
+disp.show()
 while True:
-    if sum(np.absolute(mpu.acceleration)) > 20 or n != 0:
-        gesture = []
-        if n < 250:
-            n += 1
-            gesture.append(list(mpu.acceleration + mpu.gyro))
+
+    
+    if cont == False:
+        if sum(np.absolute(mpu.acceleration)) > 20 or n != 0:
+            
+            if n < 350:
+                n += 1
+                gesture.append(list(mpu.acceleration + mpu.gyro))
+            
+            elif n == 350:
+                digit = str()
+                prediction = predict(gesture)
+                print(np.round(prediction, decimals=3))
+                number = np.argmax(prediction)
+
+                if(prediction.max() > 0.5):
+                    digit = gesture_dict[number]
+                    print(digit)
+                    eqn = eqn + digit
+                    print(eqn)
+                    if digit == 'cont':
+                        cont = True
+                    else:
+                        draw.rectangle((0, 0, width, height), outline=0, fill=0)
+                        draw.text((0, top), eqn, font=font, fill = 255)
+                        disp.image(image)
+                        disp.show()
+                else:
+                    print('fail')
+                gesture = []
+                n = 0
+
+    elif cont == True and complete == False:
+        if sum(np.absolute(mpu.acceleration)) > 20 or n != 0:
+            
+            if n < 350:
+                n += 1
+                gesture.append(list(mpu.acceleration + mpu.gyro))
+            
+            elif n == 350:
+                oper = str()
+                prediction = predict(gesture)
+                print(np.round(prediction, decimals=3))
+                number = np.argmax(prediction)
+
+                if(prediction.max() > 0.5):
+                    oper = op_dict[number]
+                    eqn = eqn + oper
+                    print(eqn)
+                    draw.rectangle((0, 0, width, height), outline=0, fill=0)
+                    draw.text((0, top), eqn, font=font, fill = 255)
+                    disp.image(image)
+                    disp.show()
+                    cont = False
+                    complete = True
+                else:
+                    print('fail')
+                gesture = []
+                n = 0
+                
+    elif cont == True and complete == True:
+        if eqn[0] in op_dict.values():
+            eqn = str(result) + eqn[1:]
         
-        prediction = predict(gesture)
+        number1 = int(re.split(r'\W', eqn)[0])
+        number2 = int(re.split(r'\W', eqn)[1])
+        operator = re.findall(r'\W', eqn)[0]                
         
+        function = op.get(operator, None)   
+        
+        result = function(number1, number2)
+        eqn = eqn + '='
+        eqn = eqn + str(result)
+        draw.rectangle((0, 0, width, height), outline=0, fill=0)
+        draw.text((0, top), eqn, font=font, fill = 255)
+        disp.image(image)
+        disp.show()
+        eqn = str()
+        cont = False
+        complete = False
         

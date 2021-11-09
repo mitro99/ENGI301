@@ -1,0 +1,4 @@
+Story
+I work in a research lab and taking my gloves off just to do some basic arithmetic on my phone has always seemed very inefficient and kind of annoying to do, since once you take gloves off it's a nightmare to put them back on immediately afterward. Therefore, I designed this gesture calculator that allows me to do all those basic calculations without having to take my gloves off or worry about contaminating my phone. I've also wanted to dive into tinyML for a while now, so this felt like an appropriate project on which to implement my first TFLite project on the PocketBeagle.
+Build Instructions
+From a hardware point of view, this project is pretty simple, all you need is the PocketBeagle, the MPU6050 IMU, and the OLED Screen. Since the PocketBeagle might be an unfamiliar platform for some of you, I am attaching the pin diagram of it here. The top of the diagram corresponds to the micro-USB port.

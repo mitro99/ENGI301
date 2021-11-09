@@ -103,7 +103,7 @@ def predict(gesture):
     endtime = time.perf_counter()
 
     #print(output_data)
-    print(endtime-starttime)
+    #print(endtime-starttime)
 
     return output_data
 
@@ -140,8 +140,9 @@ wavetype2 = 'rbio2.2'
 
 # Hardware component setup
 
-i2c = busio.I2C(board.SCL_2, board.SDA_2)
-print(board.SCL_2, board.SDA_2)
+i2c2 = busio.I2C(board.SCL_2, board.SDA_2)
+i2c = busio.I2C(board.SCL, board.SDA)
+#print(board.SCL_2, board.SDA_2)
 
 #Set up display
 disp = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c)
@@ -173,7 +174,7 @@ disp.show()
 
 
 #Set up accelerometer
-mpu = adafruit_mpu6050.MPU6050(i2c)
+mpu = adafruit_mpu6050.MPU6050(i2c2)
 mpu.accelerometer_range = adafruit_mpu6050.Range.RANGE_4_G
 mpu.gyro_range = adafruit_mpu6050.GyroRange.RANGE_500_DPS
 
@@ -206,23 +207,25 @@ while True:
             elif n == 350:
                 digit = str()
                 prediction = predict(gesture)
-                print(np.round(prediction, decimals=3))
+                #print(np.round(prediction, decimals=3))
                 number = np.argmax(prediction)
                 
                 #consider a prediction only if confidence level is above 0.5
                 if(prediction.max() > 0.5):
                     digit = gesture_dict[number]
-                    print(digit)
-                    eqn = eqn + digit
-                    print(eqn)
+                    #print(digit)
+
+                    #print(eqn)
                     if digit == 'cont':
                         cont = True
                     else:
+                        eqn = eqn + digit
                         #display on screen
                         draw.rectangle((0, 0, width, height), outline=0, fill=0)
                         draw.text((0, top), eqn, font=font, fill = 255)
                         disp.image(image)
                         disp.show()
+                        print(eqn)
                 else:
                     print('fail')
                 gesture = []
@@ -240,7 +243,7 @@ while True:
             elif n == 350:
                 oper = str()
                 prediction = predict(gesture)
-                print(np.round(prediction, decimals=3))
+                #print(np.round(prediction, decimals=3))
                 number = np.argmax(prediction)
 
                 #consider a prediction only if confidence level is above 0.5
@@ -275,7 +278,7 @@ while True:
         result = function(number1, number2)
         eqn = eqn + '='
         eqn = eqn + str(result)
-        
+        print(eqn)
         draw.rectangle((0, 0, width, height), outline=0, fill=0)
         draw.text((0, top), eqn, font=font, fill = 255)
         disp.image(image)

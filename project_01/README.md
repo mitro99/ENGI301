@@ -10,6 +10,13 @@ I work in a research lab and taking my gloves off just to do some basic arithmet
 
 From a hardware point of view, this project is pretty simple, all you need is the PocketBeagle, the MPU6050 IMU, and the OLED Screen. Since the PocketBeagle might be an unfamiliar platform for some of you, I am attaching the pin diagram of it here. The top of the diagram corresponds to the micro-USB port.
 
+##Code
+There are 4 main documents in this repository, inside the testing folder as well as 2 additional files needed for configuring the PocketBeagle pins and running the script (run.sh, configure_pins.sh): 
+-Acquisition.py
+-Data Visualization.ipynb
+-Training model.ipynb
+-Predict.py
+
 ##Operation Instructions
 
 The device is set up to run the inference code upon boot, so you just need to plug in the PocketBeagle and, after waiting for a couple of minutes, it should be up and ready to predict gestures. The flow of the calculator is as follows:

@@ -12,7 +12,11 @@ From a hardware point of view, this project is pretty simple, all you need is th
 The device is set up to run the inference code upon boot, so you just need to plug in the PocketBeagle and, after waiting for a couple of minutes, it should be up and ready to predict gestures. The flow of the calculator is as follows:
 
 -Draw out the first number in the air
+
 -Flick your wrist (this advances the calculator to the operator selector)
+
 -Draw out a digit 1 - 5 to select the operator you want
+
 -Draw out the second number in the air
+
 -Flick your wrist again to calculate the result

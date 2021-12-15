@@ -2981,7 +2981,8 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 <attribute name="NAME" x="-46.56" y="15.875" size="1.016" layer="25" ratio="12" rot="R90" align="bottom-center"/>
 <attribute name="VALUE" x="-48.96" y="15.875" size="1.016" layer="27" ratio="12" rot="R90" align="bottom-center"/>
 </element>
-<element name="RPI1" library="gesture_calculator" package="RASPBERRYPI_2X3" value="ADAPTER_2X3_THM" x="-67.5386" y="7.5311" smashed="yes" rot="R180"/>
+<element name="RPI1" library="gesture_calculator" package="RASPBERRYPI_2X3" value="ADAPTER_2X3_THM" x="-63.3857" y="15.2019" smashed="yes" rot="R180"/>
+<element name="MGT4" library="gesture_calculator" package="MOUNTING_HOLE" value="MOUNTING_HOLE" x="-74.0664" y="-5.0038" smashed="yes"/>
 </elements>
 <signals>
 <signal name="VIN">
@@ -3033,9 +3034,10 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 <wire x1="-37.66" y1="9.88" x2="-38.4175" y2="10.6375" width="0.254" layer="1"/>
 <wire x1="-38.4175" y1="10.6375" x2="-38.4175" y2="11.43" width="0.254" layer="1"/>
 <via x="-38.4175" y="11.43" extent="1-16" drill="0.35"/>
-<wire x1="-68.8086" y1="12.4714" x2="-68.58" y2="12.7" width="0.254" layer="1"/>
-<wire x1="-68.8086" y1="12.4714" x2="-68.8086" y2="10.0711" width="0.254" layer="1"/>
-<via x="-68.58" y="12.7" extent="1-16" drill="0.35"/>
+<wire x1="-64.6557" y1="17.7419" x2="-66.2051" y2="19.2913" width="0.254" layer="1"/>
+<wire x1="-66.2051" y1="19.2913" x2="-66.2178" y2="19.2913" width="0.254" layer="1"/>
+<wire x1="-66.2178" y1="19.2913" x2="-66.2178" y2="19.304" width="0.254" layer="1"/>
+<via x="-66.2178" y="19.304" extent="1-16" drill="0.35"/>
 </signal>
 <signal name="VOUT">
 <contactref element="U2" pad="24@P1"/>
@@ -3078,8 +3080,8 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 <via x="-34.29" y="11.43" extent="1-16" drill="0.35"/>
 <wire x1="-35.12" y1="9.88" x2="-34.29" y2="10.71" width="0.254" layer="1"/>
 <wire x1="-34.29" y1="10.71" x2="-34.29" y2="11.43" width="0.254" layer="1"/>
-<wire x1="-66.2686" y1="4.9911" x2="-65.6336" y2="4.9911" width="0.254" layer="1"/>
-<wire x1="-65.6336" y1="4.9911" x2="-64.4525" y2="3.81" width="0.254" layer="1"/>
+<wire x1="-62.1157" y1="12.6619" x2="-62.1157" y2="6.1468" width="0.254" layer="1"/>
+<wire x1="-64.4525" y1="3.81" x2="-62.1157" y2="6.1468" width="0.254" layer="1"/>
 <via x="-64.4525" y="3.81" extent="1-16" drill="0.35"/>
 </signal>
 <signal name="I2C2SCL">
@@ -3087,9 +3089,8 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 <contactref element="U1" pad="23"/>
 <contactref element="R4" pad="2"/>
 <contactref element="RPI1" pad="5"/>
-<wire x1="-52.9" y1="9.88" x2="-54.2075" y2="8.5725" width="0.254" layer="1"/>
-<wire x1="-64.77" y1="8.5725" x2="-66.2686" y2="10.0711" width="0.254" layer="1"/>
-<wire x1="-54.2075" y1="8.5725" x2="-64.77" y2="8.5725" width="0.254" layer="1"/>
+<wire x1="-52.9" y1="9.88" x2="-53.5769" y2="9.2031" width="0.254" layer="1"/>
+<wire x1="-53.5769" y1="9.2031" x2="-62.1157" y2="17.7419" width="0.254" layer="1"/>
 <wire x1="-52.9" y1="9.88" x2="-52.9" y2="14.625" width="0.254" layer="1"/>
 <wire x1="-52.9" y1="14.625" x2="-50.8" y2="16.725" width="0.254" layer="1"/>
 <wire x1="-50.8" y1="16.725" x2="-50.8" y2="22.86" width="0.254" layer="1"/>
@@ -3105,8 +3106,8 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 <contactref element="RPI1" pad="3"/>
 <wire x1="-50.36" y1="9.88" x2="-51.7525" y2="8.4875" width="0.254" layer="1"/>
 <wire x1="-51.7525" y1="8.4875" x2="-51.7525" y2="6.0325" width="0.254" layer="1"/>
-<wire x1="-51.7525" y1="6.0325" x2="-64.77" y2="6.0325" width="0.254" layer="1"/>
-<wire x1="-64.77" y1="6.0325" x2="-66.2686" y2="7.5311" width="0.254" layer="1"/>
+<wire x1="-51.7525" y1="6.0325" x2="-52.9463" y2="6.0325" width="0.254" layer="1"/>
+<wire x1="-52.9463" y1="6.0325" x2="-62.1157" y2="15.2019" width="0.254" layer="1"/>
 <wire x1="-50.36" y1="9.88" x2="-49.53" y2="10.71" width="0.254" layer="1"/>
 <wire x1="-49.53" y1="10.71" x2="-49.53" y2="15.875" width="0.254" layer="1"/>
 <wire x1="-49.53" y1="15.875" x2="-48.68" y2="16.725" width="0.254" layer="1"/>
@@ -3212,6 +3213,8 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 <wire x1="-19.05" y1="27.09" x2="-15.24" y2="27.09" width="0.508" layer="1"/>
 <wire x1="-15.24" y1="27.09" x2="-13.4375" y2="27.09" width="0.508" layer="1"/>
 <wire x1="-13.4375" y1="27.09" x2="-13.335" y2="26.9875" width="0.508" layer="1"/>
+<contactref element="MGT4" pad="P$1"/>
+<wire x1="-68.58" y1="38.1" x2="-74.0664" y2="-5.0038" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>
@@ -3249,6 +3252,12 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 <approved hash="5,1,abf8d00c4c991191"/>
 <approved hash="5,1,3de53c26226cea29"/>
 <approved hash="5,1,13e51c28ab624b29"/>
+<approved hash="5,1,51978c3463ab3318"/>
+<approved hash="5,1,2a622c7d642bd00a"/>
+<approved hash="5,1,2a622e9b85ab100a"/>
+<approved hash="5,1,e614d6236ddb31de"/>
+<approved hash="5,1,049ee3346fab1911"/>
+<approved hash="5,1,b31b832361db3bd1"/>
 </errors>
 </board>
 </drawing>

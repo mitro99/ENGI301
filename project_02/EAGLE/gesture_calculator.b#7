@@ -207,48 +207,6 @@
 <package name="MOUNTING_HOLE">
 <pad name="P$1" x="0" y="0" drill="3.175" diameter="4.445"/>
 </package>
-<package name="RASPBERRYPI_2X3">
-<wire x1="-1.905" y1="3.81" x2="-2.54" y2="3.175" width="0.1524" layer="21"/>
-<wire x1="-2.54" y1="3.175" x2="-2.54" y2="1.905" width="0.1524" layer="21"/>
-<wire x1="-2.54" y1="1.905" x2="-1.905" y2="1.27" width="0.1524" layer="21"/>
-<wire x1="-1.905" y1="1.27" x2="-2.54" y2="0.635" width="0.1524" layer="21"/>
-<wire x1="-2.54" y1="0.635" x2="-2.54" y2="-0.635" width="0.1524" layer="21"/>
-<wire x1="-2.54" y1="-0.635" x2="-1.905" y2="-1.27" width="0.1524" layer="21"/>
-<wire x1="-1.905" y1="-1.27" x2="-2.54" y2="-1.905" width="0.1524" layer="21"/>
-<wire x1="-2.54" y1="-1.905" x2="-2.54" y2="-3.175" width="0.1524" layer="21"/>
-<wire x1="-2.54" y1="-3.175" x2="-1.905" y2="-3.81" width="0.1524" layer="21"/>
-<wire x1="-1.905" y1="3.81" x2="1.905" y2="3.81" width="0.2032" layer="21"/>
-<wire x1="1.905" y1="3.81" x2="2.54" y2="3.175" width="0.2032" layer="21"/>
-<wire x1="2.54" y1="3.175" x2="2.54" y2="1.905" width="0.2032" layer="21"/>
-<wire x1="2.54" y1="1.905" x2="1.905" y2="1.27" width="0.2032" layer="21"/>
-<wire x1="1.905" y1="1.27" x2="2.54" y2="0.635" width="0.2032" layer="21"/>
-<wire x1="2.54" y1="0.635" x2="2.54" y2="-0.635" width="0.2032" layer="21"/>
-<wire x1="2.54" y1="-0.635" x2="1.905" y2="-1.27" width="0.2032" layer="21"/>
-<wire x1="1.905" y1="-1.27" x2="2.54" y2="-1.905" width="0.2032" layer="21"/>
-<wire x1="2.54" y1="-1.905" x2="2.54" y2="-3.175" width="0.2032" layer="21"/>
-<wire x1="2.54" y1="-3.175" x2="1.905" y2="-3.81" width="0.2032" layer="21"/>
-<wire x1="1.905" y1="1.27" x2="-1.905" y2="1.27" width="0.2032" layer="21"/>
-<wire x1="1.905" y1="-1.27" x2="-1.905" y2="-1.27" width="0.2032" layer="21"/>
-<wire x1="1.905" y1="-3.81" x2="-1.905" y2="-3.81" width="0.2032" layer="21"/>
-<rectangle x1="-1.524" y1="2.286" x2="-1.016" y2="2.794" layer="51" rot="R270"/>
-<rectangle x1="1.016" y1="2.286" x2="1.524" y2="2.794" layer="51" rot="R270"/>
-<rectangle x1="1.016" y1="-0.254" x2="1.524" y2="0.254" layer="51" rot="R270"/>
-<rectangle x1="-1.524" y1="-0.254" x2="-1.016" y2="0.254" layer="51" rot="R270"/>
-<rectangle x1="1.016" y1="-2.794" x2="1.524" y2="-2.286" layer="51" rot="R270"/>
-<rectangle x1="-1.524" y1="-2.794" x2="-1.016" y2="-2.286" layer="51" rot="R270"/>
-<pad name="1" x="-1.27" y="2.54" drill="1" diameter="1.6764" shape="square" rot="R270"/>
-<pad name="2" x="1.27" y="2.54" drill="1" diameter="1.6764" rot="R270"/>
-<pad name="3" x="-1.27" y="0" drill="1" diameter="1.6764" rot="R270"/>
-<pad name="4" x="1.27" y="0" drill="1" diameter="1.6764" rot="R270"/>
-<pad name="5" x="-1.27" y="-2.54" drill="1" diameter="1.6764" rot="R270"/>
-<pad name="6" x="1.27" y="-2.54" drill="1" diameter="1.6764" rot="R270"/>
-<text x="3.048" y="2.032" size="1.27" layer="25" font="vector">5V0</text>
-<text x="3.048" y="-0.508" size="1.27" layer="25" font="vector">5.0V</text>
-<text x="3.048" y="-3.048" size="1.27" layer="25" font="vector">GND</text>
-<text x="-3.048" y="3.302" size="1.27" layer="25" font="vector" rot="R180">3V3</text>
-<text x="-3.048" y="0.762" size="1.27" layer="25" font="vector" rot="R180">SDA1</text>
-<text x="-3.048" y="-1.778" size="1.27" layer="25" font="vector" rot="R180">SCL1</text>
-</package>
 <package name="QFN50P400X400X95-24N">
 <wire x1="1.56" y1="2.05" x2="2.05" y2="2.05" width="0.127" layer="21"/>
 <wire x1="2.05" y1="2.05" x2="2.05" y2="1.56" width="0.127" layer="21"/>
@@ -649,6 +607,48 @@
 <text x="42.7355" y="10.7315" size="1.016" layer="21" font="vector" ratio="12" align="bottom-center">U0</text>
 <wire x1="7.1882" y1="32.2326" x2="7.1882" y2="30.2006" width="0.254" layer="21"/>
 </package>
+<package name="RASPBERRYPI_2X3">
+<wire x1="-1.905" y1="3.81" x2="-2.54" y2="3.175" width="0.1524" layer="21"/>
+<wire x1="-2.54" y1="3.175" x2="-2.54" y2="1.905" width="0.1524" layer="21"/>
+<wire x1="-2.54" y1="1.905" x2="-1.905" y2="1.27" width="0.1524" layer="21"/>
+<wire x1="-1.905" y1="1.27" x2="-2.54" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="-2.54" y1="0.635" x2="-2.54" y2="-0.635" width="0.1524" layer="21"/>
+<wire x1="-2.54" y1="-0.635" x2="-1.905" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="-1.905" y1="-1.27" x2="-2.54" y2="-1.905" width="0.1524" layer="21"/>
+<wire x1="-2.54" y1="-1.905" x2="-2.54" y2="-3.175" width="0.1524" layer="21"/>
+<wire x1="-2.54" y1="-3.175" x2="-1.905" y2="-3.81" width="0.1524" layer="21"/>
+<wire x1="-1.905" y1="3.81" x2="1.905" y2="3.81" width="0.2032" layer="21"/>
+<wire x1="1.905" y1="3.81" x2="2.54" y2="3.175" width="0.2032" layer="21"/>
+<wire x1="2.54" y1="3.175" x2="2.54" y2="1.905" width="0.2032" layer="21"/>
+<wire x1="2.54" y1="1.905" x2="1.905" y2="1.27" width="0.2032" layer="21"/>
+<wire x1="1.905" y1="1.27" x2="2.54" y2="0.635" width="0.2032" layer="21"/>
+<wire x1="2.54" y1="0.635" x2="2.54" y2="-0.635" width="0.2032" layer="21"/>
+<wire x1="2.54" y1="-0.635" x2="1.905" y2="-1.27" width="0.2032" layer="21"/>
+<wire x1="1.905" y1="-1.27" x2="2.54" y2="-1.905" width="0.2032" layer="21"/>
+<wire x1="2.54" y1="-1.905" x2="2.54" y2="-3.175" width="0.2032" layer="21"/>
+<wire x1="2.54" y1="-3.175" x2="1.905" y2="-3.81" width="0.2032" layer="21"/>
+<wire x1="1.905" y1="1.27" x2="-1.905" y2="1.27" width="0.2032" layer="21"/>
+<wire x1="1.905" y1="-1.27" x2="-1.905" y2="-1.27" width="0.2032" layer="21"/>
+<wire x1="1.905" y1="-3.81" x2="-1.905" y2="-3.81" width="0.2032" layer="21"/>
+<rectangle x1="-1.524" y1="2.286" x2="-1.016" y2="2.794" layer="51" rot="R270"/>
+<rectangle x1="1.016" y1="2.286" x2="1.524" y2="2.794" layer="51" rot="R270"/>
+<rectangle x1="1.016" y1="-0.254" x2="1.524" y2="0.254" layer="51" rot="R270"/>
+<rectangle x1="-1.524" y1="-0.254" x2="-1.016" y2="0.254" layer="51" rot="R270"/>
+<rectangle x1="1.016" y1="-2.794" x2="1.524" y2="-2.286" layer="51" rot="R270"/>
+<rectangle x1="-1.524" y1="-2.794" x2="-1.016" y2="-2.286" layer="51" rot="R270"/>
+<pad name="1" x="-1.27" y="2.54" drill="1" diameter="1.6764" shape="square" rot="R270"/>
+<pad name="2" x="1.27" y="2.54" drill="1" diameter="1.6764" rot="R270"/>
+<pad name="3" x="-1.27" y="0" drill="1" diameter="1.6764" rot="R270"/>
+<pad name="4" x="1.27" y="0" drill="1" diameter="1.6764" rot="R270"/>
+<pad name="5" x="-1.27" y="-2.54" drill="1" diameter="1.6764" rot="R270"/>
+<pad name="6" x="1.27" y="-2.54" drill="1" diameter="1.6764" rot="R270"/>
+<text x="3.048" y="2.032" size="1.27" layer="25" font="vector">5V0</text>
+<text x="3.048" y="-0.508" size="1.27" layer="25" font="vector">5.0V</text>
+<text x="3.048" y="-3.048" size="1.27" layer="25" font="vector">GND</text>
+<text x="-3.048" y="3.302" size="1.27" layer="25" font="vector" rot="R180">3V3</text>
+<text x="-3.048" y="0.762" size="1.27" layer="25" font="vector" rot="R180">SDA1</text>
+<text x="-3.048" y="-1.778" size="1.27" layer="25" font="vector" rot="R180">SCL1</text>
+</package>
 </packages>
 </library>
 </libraries>
@@ -874,7 +874,6 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 <attribute name="NAME" x="-17.35" y="27.94" size="1.016" layer="25" ratio="12" rot="R90" align="bottom-center"/>
 <attribute name="VALUE" x="-19.75" y="27.94" size="1.016" layer="27" ratio="12" rot="R90" align="bottom-center"/>
 </element>
-<element name="RPI1" library="gesture_calculator" package="RASPBERRYPI_2X3" value="ADAPTER_2X3_THM" x="-67.31" y="7.62" smashed="yes" rot="R180"/>
 <element name="U1" library="gesture_calculator" package="QFN50P400X400X95-24N" value="MPU-6050" x="-40.64" y="22.86" smashed="yes">
 <attribute name="AVAILABILITY" value="In Stock" x="0" y="-24.13" size="1.778" layer="27" display="off"/>
 <attribute name="DESCRIPTION" value=" MPU-6050 series Accelerometer, Gyroscope, 3 Axis Sensor Evaluation Board " x="0" y="-24.13" size="1.778" layer="27" display="off"/>
@@ -898,6 +897,7 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 <attribute name="NAME" x="-52.07" y="14.175" size="1.016" layer="25" ratio="12" align="bottom-center"/>
 <attribute name="VALUE" x="-52.07" y="16.575" size="1.016" layer="27" ratio="12" align="bottom-center"/>
 </element>
+<element name="RPI1" library="gesture_calculator" package="RASPBERRYPI_2X3" value="ADAPTER_2X3_THM" x="-68.58" y="-6.6675" smashed="yes"/>
 </elements>
 <signals>
 <signal name="VIN">
@@ -913,7 +913,6 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 <contactref element="C1" pad="1"/>
 <contactref element="C3" pad="2"/>
 <contactref element="C4" pad="1"/>
-<contactref element="RPI1" pad="6"/>
 <contactref element="M1" pad="-"/>
 <contactref element="M2" pad="-"/>
 <contactref element="R1" pad="2"/>
@@ -933,8 +932,6 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 <wire x1="-15.24" y1="30.48" x2="-15.875" y2="31.115" width="0.254" layer="1"/>
 <via x="-18.415" y="31.115" extent="1-16" drill="0.3048" diameter="0.6096"/>
 <via x="-15.875" y="31.115" extent="1-16" drill="0.3048" diameter="0.6096"/>
-<wire x1="-68.58" y1="10.16" x2="-68.58" y2="12.7" width="0.254" layer="1"/>
-<via x="-68.58" y="12.7" extent="1-16" drill="0.3048" diameter="0.6096"/>
 <wire x1="-38.1" y1="15.66" x2="-38.1" y2="14.605" width="0.254" layer="1"/>
 <via x="-53.975" y="24.13" extent="1-16" drill="0.3048" diameter="0.6096"/>
 <via x="-38.1" y="14.605" extent="1-16" drill="0.3048" diameter="0.6096"/>
@@ -948,6 +945,19 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 <via x="-41.275" y="26.67" extent="1-16" drill="0.3048" diameter="0.6096"/>
 <wire x1="-55.69" y1="24.4" x2="-54.245" y2="24.4" width="0.254" layer="16"/>
 <wire x1="-54.245" y1="24.4" x2="-53.975" y2="24.13" width="0.254" layer="16"/>
+<contactref element="RPI1" pad="6"/>
+<wire x1="-45.28" y1="9.88" x2="-67.31" y2="-9.2075" width="0" layer="19" extent="1-1"/>
+<wire x1="-43.18" y1="14.605" x2="-45.28" y2="9.88" width="0" layer="19" extent="1-1"/>
+<wire x1="-38.1" y1="14.605" x2="-43.18" y2="14.605" width="0" layer="19" extent="1-1"/>
+<wire x1="-37.66" y1="9.88" x2="-38.1" y2="14.605" width="0" layer="19" extent="1-1"/>
+<wire x1="-36.195" y1="23.71" x2="-38.1" y2="15.66" width="0" layer="19" extent="1-1"/>
+<wire x1="-40.22" y1="26.67" x2="-38.67" y2="24.11" width="0" layer="19" extent="1-1"/>
+<wire x1="-37.66" y1="32.74" x2="-40.22" y2="26.67" width="0" layer="19" extent="1-1"/>
+<wire x1="-45.28" y1="32.74" x2="-41.275" y2="26.67" width="0" layer="19" extent="1-1"/>
+<wire x1="-29.21" y1="19.05" x2="-36.195" y2="23.71" width="0" layer="19" extent="1-1"/>
+<wire x1="-53.975" y1="24.13" x2="-45.28" y2="32.74" width="0" layer="19" extent="1-1"/>
+<wire x1="-19.05" y1="28.79" x2="-28.13" y2="18.78" width="0" layer="19" extent="1-1"/>
+<wire x1="-15.875" y1="31.115" x2="-18.415" y2="31.115" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="VOUT">
 <contactref element="U2" pad="24@P1"/>
@@ -962,7 +972,6 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 </signal>
 <signal name="VDD_3P3V">
 <contactref element="U2" pad="14@P1"/>
-<contactref element="RPI1" pad="1"/>
 <contactref element="U1" pad="13"/>
 <contactref element="C2" pad="1"/>
 <contactref element="C4" pad="2"/>
@@ -983,24 +992,28 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 <via x="-36.195" y="20.955" extent="1-16" drill="0.3048" diameter="0.6096"/>
 <contactref element="R4" pad="1"/>
 <contactref element="R5" pad="1"/>
+<contactref element="RPI1" pad="1"/>
+<wire x1="-52.92" y1="15.875" x2="-69.85" y2="-4.1275" width="0" layer="19" extent="1-1"/>
 <wire x1="-50.38" y1="19.05" x2="-52.92" y2="15.875" width="0" layer="19" extent="1-1"/>
-<wire x1="-66.04" y1="5.08" x2="-50.38" y2="19.05" width="0" layer="19" extent="1-1"/>
+<wire x1="-43.18" y1="18.415" x2="-50.38" y2="19.05" width="0" layer="19" extent="1-1"/>
+<wire x1="-38.67" y1="21.61" x2="-41.39" y2="20.89" width="0" layer="19" extent="1-1"/>
+<wire x1="-35.12" y1="9.88" x2="-43.18" y2="17.36" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="I2C2SCL">
 <contactref element="U2" pad="28@P1"/>
 <contactref element="U1" pad="23"/>
-<contactref element="RPI1" pad="3"/>
 <contactref element="R4" pad="2"/>
-<wire x1="-52.9" y1="9.88" x2="-66.04" y2="7.62" width="0" layer="19" extent="1-1"/>
+<contactref element="RPI1" pad="5"/>
+<wire x1="-52.9" y1="9.88" x2="-69.85" y2="-9.2075" width="0" layer="19" extent="1-1"/>
 <wire x1="-48.68" y1="19.05" x2="-52.9" y2="9.88" width="0" layer="19" extent="1-1"/>
 <wire x1="-41.39" y1="24.83" x2="-48.68" y2="19.05" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="I2C2SDA">
 <contactref element="U2" pad="26@P1"/>
 <contactref element="U1" pad="24"/>
-<contactref element="RPI1" pad="5"/>
 <contactref element="R5" pad="2"/>
-<wire x1="-50.36" y1="9.88" x2="-66.04" y2="10.16" width="0" layer="19" extent="1-1"/>
+<contactref element="RPI1" pad="3"/>
+<wire x1="-50.36" y1="9.88" x2="-69.85" y2="-6.6675" width="0" layer="19" extent="1-1"/>
 <wire x1="-51.22" y1="15.875" x2="-50.36" y2="9.88" width="0" layer="19" extent="1-1"/>
 <wire x1="-41.89" y1="24.83" x2="-51.22" y2="15.875" width="0" layer="19" extent="1-1"/>
 </signal>
